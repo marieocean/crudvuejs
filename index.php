@@ -71,7 +71,7 @@
         <div class="modal-content">
          <div class="modal-header">
           <button type="button" class="close" @click="myModel=false"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">{{ dynamicTitle }}</h4>
+          <h4 class="modal-title">{{ uppertitle }}</h4>
          </div>
          <div class="modal-body">
           <div class="form-group">
@@ -110,9 +110,12 @@ var application = new Vue({
   dynamicTitle:'Add Data',
  },
  computed:{
-   fullname: function(){
-     return application.first_name + " "+ application.last_name;
+   uppertitle: {
+     get : function (){
+       return this.dynamicTitle.toUpperCase();
+     }
    }
+     
  },
  methods:{
   fetchAllData:function(){
@@ -151,7 +154,7 @@ var application = new Vue({
      }).then(function(response){
       application.myModel = false;
       application.fetchAllData();
-      alert(response.data.message + ' '+application.fullname);
+      alert(response.data.message);
       application.first_name = '';
       application.last_name = '';
      }).then(function(response){
