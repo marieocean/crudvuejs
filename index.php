@@ -48,12 +48,14 @@
        <tr>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Image</th>
         <th>Edit</th>
         <th>Delete</th>
        </tr>
        <tr v-for="row in tenData">
         <td>{{ row.first_name }}</td>
         <td>{{ row.last_name }}</td>
+        <td><img :src="imgfullpath(row.imgpath)" width='100' /></td>
         <td><button type="button" name="edit" class="btn btn-primary btn-xs edit" @click="fetchData(row.id)">Edit</button></td>
         <td><button type="button" name="delete" class="btn btn-danger btn-xs delete" @click="deleteData(row.id)">Delete</button></td>
        </tr>
@@ -107,6 +109,11 @@ var application = new Vue({
   actionButton:'Insert',
   dynamicTitle:'Add Data',
  },
+ computed:{
+   fullname: function(){
+     return application.first_name + " "+ application.last_name;
+   }
+ },
  methods:{
   fetchAllData:function(){
    axios.post('src/action.php', {
@@ -114,6 +121,9 @@ var application = new Vue({
    }).then(function(response){
     application.allData = response.data;
    });
+  },
+  imgfullpath:function(img){
+    return "uploads/img/"+img;
   },
   fetch10Data:function(){
    axios.post('src/action.php', {
@@ -141,9 +151,9 @@ var application = new Vue({
      }).then(function(response){
       application.myModel = false;
       application.fetchAllData();
+      alert(response.data.message + ' '+application.fullname);
       application.first_name = '';
       application.last_name = '';
-      alert(response.data.message);
      }).then(function(response){
          application.fetch10Data();
      });
