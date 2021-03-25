@@ -24,6 +24,9 @@
      display: table-cell;
      vertical-align: middle;
    }
+   .inactive{    
+     background-color: #ddd;
+   }
   </style>
  </head>
  <body>
@@ -52,7 +55,7 @@
         <th>Edit</th>
         <th>Delete</th>
        </tr>
-       <tr v-for="row in tenData">
+       <tr v-for="row in tenData" v-bind:class="{ inactive: row.active == false}">
         <td>{{ row.first_name }}</td>
         <td>{{ row.last_name }}</td>
         <td><img :src="imgfullpath(row.imgpath)" width='100' /></td>
