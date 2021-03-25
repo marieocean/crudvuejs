@@ -43,3 +43,7 @@ ALTER TABLE `tbl_sample`
 ALTER TABLE `tbl_sample`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+ ALTER TABLE `tbl_sample` ADD `imgpath` VARCHAR(255) NOT NULL DEFAULT 'empty.png' AFTER `last_name`; 
+
+ ALTER TABLE `tbl_sample` ADD `active` BOOLEAN NOT NULL DEFAULT TRUE AFTER `imgpath`; 
+
