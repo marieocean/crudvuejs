@@ -109,14 +109,14 @@ var application = new Vue({
  },
  methods:{
   fetchAllData:function(){
-   axios.post('action.php', {
+   axios.post('src/action.php', {
     action:'fetchall'
    }).then(function(response){
     application.allData = response.data;
    });
   },
   fetch10Data:function(){
-   axios.post('action.php', {
+   axios.post('src/action.php', {
     action:'fetch10'
    }).then(function(response){
     application.tenData = response.data;
@@ -134,7 +134,7 @@ var application = new Vue({
    {
     if(application.actionButton == 'Insert')
     {
-     axios.post('action.php', {
+     axios.post('src/action.php', {
       action:'insert',
       firstName:application.first_name, 
       lastName:application.last_name
@@ -150,7 +150,7 @@ var application = new Vue({
     }
     if(application.actionButton == 'Update')
     {
-     axios.post('action.php', {
+     axios.post('src/action.php', {
       action:'update',
       firstName : application.first_name,
       lastName : application.last_name,
@@ -171,7 +171,7 @@ var application = new Vue({
    }
   },
   fetchData:function(id){
-   axios.post('action.php', {
+   axios.post('src/action.php', {
     action:'fetchSingle',
     id:id
    }).then(function(response){
@@ -186,7 +186,7 @@ var application = new Vue({
   deleteData:function(id){
    if(confirm("Are you sure you want to remove this data?"))
    {
-    axios.post('action.php', {
+    axios.post('src/action.php', {
      action:'delete',
      id:id
     }).then(function(response){
